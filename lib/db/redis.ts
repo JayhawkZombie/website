@@ -4,33 +4,52 @@ let redis: Redis | null = null;
 
 /**
  * Get or create a Redis client
+ * Returns null during build time or if Redis is not available
  */
-export function getRedis(): Redis {
+export function getRedis(): Redis | null {
+  // Skip Redis connection during build time
+  if (
+    process.env.NODE_ENV === 'production' &&
+    process.env.NEXT_PHASE === 'phase-production-build'
+  ) {
+    return null;
+  }
+
+  // Skip if no Redis URL is provided
+  const redisUrl = process.env.REDIS_URL;
+  if (!redisUrl) {
+    return null;
+  }
+
   if (!redis) {
-    const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
+    try {
+      redis = new Redis(redisUrl, {
+        maxRetriesPerRequest: 3,
+        retryStrategy: (times) => {
+          const delay = Math.min(times * 50, 2000);
+          return delay;
+        },
+        reconnectOnError: (err) => {
+          const targetError = 'READONLY';
+          if (err.message.includes(targetError)) {
+            return true;
+          }
+          return false;
+        },
+        lazyConnect: true, // Don't connect immediately
+      });
 
-    redis = new Redis(redisUrl, {
-      maxRetriesPerRequest: 3,
-      retryStrategy: (times) => {
-        const delay = Math.min(times * 50, 2000);
-        return delay;
-      },
-      reconnectOnError: (err) => {
-        const targetError = 'READONLY';
-        if (err.message.includes(targetError)) {
-          return true;
-        }
-        return false;
-      },
-    });
+      redis.on('error', (err) => {
+        console.error('Redis Client Error', err);
+      });
 
-    redis.on('error', (err) => {
-      console.error('Redis Client Error', err);
-    });
-
-    redis.on('connect', () => {
-      console.log('Redis Client Connected');
-    });
+      redis.on('connect', () => {
+        console.log('Redis Client Connected');
+      });
+    } catch (error) {
+      console.error('Failed to create Redis client:', error);
+      return null;
+    }
   }
 
   return redis;
@@ -42,6 +61,9 @@ export function getRedis(): Redis {
 export async function getCache<T>(key: string): Promise<T | null> {
   try {
     const client = getRedis();
+    if (!client) {
+      return null;
+    }
     const value = await client.get(key);
     return value ? (JSON.parse(value) as T) : null;
   } catch (error) {
@@ -56,6 +78,9 @@ export async function getCache<T>(key: string): Promise<T | null> {
 export async function setCache(key: string, value: any, ttlSeconds?: number): Promise<void> {
   try {
     const client = getRedis();
+    if (!client) {
+      return;
+    }
     const serialized = JSON.stringify(value);
     if (ttlSeconds) {
       await client.setex(key, ttlSeconds, serialized);
@@ -73,6 +98,9 @@ export async function setCache(key: string, value: any, ttlSeconds?: number): Pr
 export async function deleteCache(key: string): Promise<void> {
   try {
     const client = getRedis();
+    if (!client) {
+      return;
+    }
     await client.del(key);
   } catch (error) {
     console.error('Redis delete error:', error);
@@ -85,6 +113,9 @@ export async function deleteCache(key: string): Promise<void> {
 export async function deleteCachePattern(pattern: string): Promise<void> {
   try {
     const client = getRedis();
+    if (!client) {
+      return;
+    }
     const keys = await client.keys(pattern);
     if (keys.length > 0) {
       await client.del(...keys);
