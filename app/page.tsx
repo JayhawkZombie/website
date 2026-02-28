@@ -1,20 +1,21 @@
 "use client";
 
 import React from "react";
-import { Center, Container, Flex, Stack, Text, Title } from "@mantine/core";
+import { Center, Container, Stack, Text, Title } from "@mantine/core";
 import styles from "./page.module.scss";
 import FeaturesCards from "@/components/ui/home/FeaturesCards";
-import { IconStar } from "@tabler/icons-react";
-
+import { ZoomieUnderline } from "@/components/ui/ZoomieUnderline";
 const features = [
 	{
 		title: "Full Stack Developer",
-		description: "Description 1",
+		description:
+			"Full-Stack Developer with 5+ years of experience building scalable web applications.",
 		// icon: IconStar,
 	},
 	{
-		title: "Embedded Systems",
-		description: "Description 2",
+		title: "Embedded Systems Engineer",
+		description:
+			"Experience in designing and developing embedded firmware in C++, primarily for the ESP32 family. Developing with PlatformIO and the Arduino framework, I create custom LED setups with custom hardware configurations for each project's needs.",
 		// icon: IconStar,
 	},
 ];
@@ -26,9 +27,13 @@ export default function Home() {
 				<Center>
 					<Stack gap="xs" align="center">
 						<Title order={2} className={styles.title} ta="center" mt="sm">
-							<Text>{"Full Stack Developer"}</Text>
-							<Text>{"and"}</Text>
-							<Text className={styles.strobeRainbow}>{"Embedded Systems"}</Text>
+							<ZoomieUnderline>
+								<Text span>Full Stack Developer</Text>
+								<Text span> and </Text>
+								<Text span className={styles.strobeRainbow}>
+									Embedded Systems
+								</Text>
+							</ZoomieUnderline>
 						</Title>
 
 						<Title order={3} c="dimmed" className={styles.description} ta="center" mt="md">

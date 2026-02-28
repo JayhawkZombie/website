@@ -1,0 +1,32 @@
+.wrapper {
+	position: relative;
+	display: inline-block;
+
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -4px;
+		height: 3px;
+		width: 100%;
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			transparent 35%,
+			var(--zoomie-color, var(--mantine-color-blue-5)) 50%,
+			transparent 65%,
+			transparent 100%
+		);
+		background-size: 200% 100%;
+		animation: pulseAlong var(--zoomie-duration, 2s) ease-in-out infinite;
+	}
+}
+
+@keyframes pulseAlong {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
