@@ -1,0 +1,11 @@
+.main {
+	flex: 1;
+	background-color: var(--mantine-color-body);
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: var(--mantine-color-body);
+}
