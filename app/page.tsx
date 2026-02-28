@@ -8,8 +8,13 @@ import { IconStar } from "@tabler/icons-react";
 
 const features = [
 	{
-		title: "Feature 1",
+		title: "Full Stack Developer",
 		description: "Description 1",
+		// icon: IconStar,
+	},
+	{
+		title: "Embedded Systems",
+		description: "Description 2",
 		// icon: IconStar,
 	},
 ];
@@ -20,11 +25,15 @@ export default function Home() {
 			<Container className={styles.content}>
 				<Center>
 					<Stack gap="xs" align="center">
-						<Text size="xl">Full Stack</Text>
-						<Text size="xl">and</Text>
-						<Text size="xl" className={styles.strobeRainbow}>
-							Embedded Systems
-						</Text>
+						<Title order={2} className={styles.title} ta="center" mt="sm">
+							<Text>{"Full Stack Developer"}</Text>
+							<Text>{"and"}</Text>
+							<Text className={styles.strobeRainbow}>{"Embedded Systems"}</Text>
+						</Title>
+
+						<Title order={3} c="dimmed" className={styles.description} ta="center" mt="md">
+							<Text>{"Some description here"}</Text>
+						</Title>
 					</Stack>
 				</Center>
 				<FeaturesCards features={features} />
