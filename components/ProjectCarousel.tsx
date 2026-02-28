@@ -1,9 +1,59 @@
+"use client";
+
 import { Carousel } from "@mantine/carousel";
-import { Button, Paper, Text, Title, useMantineTheme } from "@mantine/core";
+import { Button, Card, Paper, Text, Title, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import styles from "./ProjectCarousel.module.scss";
+import Image from "next/image";
 
 type CardProps = {
 	imageUrl: string;
 	title: string;
+	description: string;
 };
+
+type ProjectCarouselProps = {
+	projects: CardProps[];
+};
+
+function ProjectCard(props: CardProps) {
+	return (
+		<Paper
+			shadow="md"
+			p="xl"
+			radius="md"
+			style={{ backgroundImage: `url(${props.imageUrl})` }}
+			className={styles.card}
+		>
+			<div>
+				<Text className={styles.category} size="xs">
+					{props.title}
+				</Text>
+				<Title order={3} className={styles.title}>
+					{props.title}
+				</Title>
+			</div>
+			<Button variant="white" color="dark">
+				Read article
+			</Button>
+		</Paper>
+	);
+}
+export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
+	const slides = projects.map((project) => (
+		<Carousel.Slide key={project.title}>
+			<ProjectCard {...project} />
+		</Carousel.Slide>
+	));
+	return (
+		<Carousel
+			slideSize={{ base: "100%", sm: "50%" }}
+			slideGap={1}
+			emblaOptions={{ align: "start", slidesToScroll: 1 }}
+			nextControlProps={{ "aria-label": "Next slide" }}
+			previousControlProps={{ "aria-label": "Previous slide" }}
+		>
+			{slides}
+		</Carousel>
+	);
+}

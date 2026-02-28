@@ -1,3 +1,36 @@
 .main {
 	background-color: var(--mantine-color-body);
 }
+
+.content {
+}
+
+@property --hue {
+	syntax: "<number>";
+	initial-value: 0;
+	inherits: true;
+}
+
+@keyframes rainbow {
+	from {
+		--hue: 0;
+	}
+	to {
+		--hue: 360;
+	}
+}
+
+.strobeRainbow {
+	animation: rainbow 5s linear infinite;
+	/* Use the custom property within the hsl() function */
+	color: hsl(var(--hue), 100%, 50%);
+}
+
+@keyframes strobeRainbow {
+	0% {
+		color: var(--mantine-color-red-5);
+	}
+	100% {
+		color: var(--mantine-color-blue-5);
+	}
+}

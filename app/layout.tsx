@@ -8,6 +8,7 @@ import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { theme } from "@/lib/mantine/theme";
 import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
 import "@mantine/notifications/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });
