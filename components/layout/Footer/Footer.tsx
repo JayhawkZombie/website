@@ -8,16 +8,16 @@ export const Footer: React.FC = () => {
 			<Container size="xl" py="xl">
 				<Group justify="space-between" align="center">
 					<Text size="sm" c="dimmed">
-						© {new Date().getFullYear()} Personal Website. All rights reserved.
+						© {new Date().getFullYear()} Kurt Slagle. All rights reserved.
 					</Text>
 					<Group gap="md">
-						<Anchor href="https://github.com" size="sm" c="dimmed">
+						<Anchor href="https://github.com/JayhawkZombie" size="sm" c="dimmed">
 							GitHub
 						</Anchor>
-						<Anchor href="https://linkedin.com" size="sm" c="dimmed">
+						<Anchor href="https://linkedin.com/in/kurtslagle/" size="sm" c="dimmed">
 							LinkedIn
 						</Anchor>
-						<Anchor href="mailto:contact@example.com" size="sm" c="dimmed">
+						<Anchor href="mailto:kurt_slagle@yahoo.com" size="sm" c="dimmed">
 							Contact
 						</Anchor>
 					</Group>
