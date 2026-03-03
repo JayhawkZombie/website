@@ -2,7 +2,7 @@
  * Application constants
  */
 
-export const APP_NAME = "Personal Website";
+export const APP_NAME = "Kurt Slagle";
 export const APP_DESCRIPTION = "Personal website portfolio, blog, and resume";
 
 // API routes

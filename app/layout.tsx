@@ -10,12 +10,13 @@ import { theme } from "@/lib/mantine/theme";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 import "@mantine/notifications/styles.css";
+import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Personal Website",
-	description: "Personal website portfolio, blog, and resume",
+	title: APP_NAME,
+	description: APP_DESCRIPTION,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
