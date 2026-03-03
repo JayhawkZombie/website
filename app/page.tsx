@@ -5,6 +5,8 @@ import { Center, Container, Stack, Text, Title } from "@mantine/core";
 import styles from "./page.module.scss";
 import FeaturesCards from "@/components/ui/home/FeaturesCards";
 import { ZoomieUnderline } from "@/components/ui/ZoomieUnderline";
+import { OverlayLEDCanvas } from "@/components/effect-preview/OverlayLEDCanvas";
+import { EffectPreviewCanvas } from "@/components/effect-preview/EffectPreviewCanvas";
 const features = [
 	{
 		title: "Full Stack Developer",
@@ -28,6 +30,7 @@ export default function Home() {
 					<Stack gap="xs" align="center">
 						<Title order={2} className={styles.title} ta="center" mt="sm">
 							<ZoomieUnderline>
+								<OverlayLEDCanvas />
 								<Text span>Full Stack Developer</Text>
 								<Text span> and </Text>
 								<Text span className={styles.strobeRainbow}>
