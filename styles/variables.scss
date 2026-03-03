@@ -58,8 +58,8 @@
 	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-// Colors - Dark Mode
-:root.dark {
+// Colors - Dark Mode (match Mantine's attribute so we don't need a separate ThemeSync)
+[data-mantine-color-scheme="dark"] {
 	--color-primary: #3b82f6;
 	--color-secondary: #a78bfa;
 	--color-success: #22c55e;

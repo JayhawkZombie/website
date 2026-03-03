@@ -11,7 +11,6 @@ import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 import "@mantine/notifications/styles.css";
 import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
-import { ThemeSync } from "@/components/ThemeSync";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,15 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<ColorSchemeScript defaultColorScheme="dark" />
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `(function(){var d=document.documentElement;if(d.getAttribute('data-mantine-color-scheme')==='dark')d.classList.add('dark');})();`,
-					}}
-				/>
 			</head>
 			<body className={inter.className + " " + styles.body}>
 				<MantineProvider theme={theme} defaultColorScheme="dark">
-					<ThemeSync />
 					<Notifications />
 					<div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
 						<Header />
