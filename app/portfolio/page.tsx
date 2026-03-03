@@ -28,7 +28,7 @@ export default function Portfolio() {
 			<Center>
 				<Stack>
 					<Center inline>
-						<ZoomieUnderline>
+						<ZoomieUnderline rainbow>
 							<Title order={1}>Portfolio</Title>
 						</ZoomieUnderline>
 					</Center>

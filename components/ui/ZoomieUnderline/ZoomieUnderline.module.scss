@@ -1,3 +1,4 @@
+/* Uses shared @keyframes rainbow and @property --hue from styles/animations.scss (via globals) */
 .wrapper {
 	position: relative;
 	display: inline-block;
@@ -21,6 +22,23 @@
 		);
 		background-size: 200% 100%;
 		animation: pulseAlong var(--zoomie-duration, 2s) ease-in-out infinite;
+	}
+
+	&.rainbow::after {
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			transparent 35%,
+			hsl(var(--hue), 100%, 50%) 50%,
+			transparent 65%,
+			transparent 100%
+		);
+		/* background shorthand resets background-size; restore so pulseAlong slides the band */
+		background-size: 200% 100%;
+		/* Animate --hue on the same element that has the gradient so the color actually updates */
+		animation:
+			pulseAlong var(--zoomie-duration, 2s) ease-in-out infinite,
+			rainbow 5s linear infinite;
 	}
 }
 

@@ -1,0 +1,16 @@
+/* Shared rainbow animation: animate --hue 0–360 and use color: hsl(var(--hue), 100%, 50%) */
+
+@property --hue {
+	syntax: "<number>";
+	initial-value: 0;
+	inherits: true;
+}
+
+@keyframes rainbow {
+	from {
+		--hue: 0;
+	}
+	to {
+		--hue: 360;
+	}
+}
