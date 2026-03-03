@@ -1,6 +1,8 @@
 .wrapper {
 	position: relative;
 	display: inline-block;
+	margin-bottom: 7px;
+	width: fit-content;
 
 	&::after {
 		content: "";

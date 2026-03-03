@@ -48,7 +48,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
 	return (
 		<Carousel
 			slideSize={{ base: "100%", sm: "50%" }}
-			slideGap={1}
+			slideGap={4}
 			emblaOptions={{ align: "start", slidesToScroll: 1 }}
 			nextControlProps={{ "aria-label": "Next slide" }}
 			previousControlProps={{ "aria-label": "Previous slide" }}

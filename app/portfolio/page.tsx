@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Text, Title } from "@mantine/core";
+import { Container, Text, Title, Center, Stack } from "@mantine/core";
 import styles from "./page.module.scss";
 import ProjectCarousel from "@/components/ProjectCarousel";
+import { ZoomieUnderline } from "@/components/ui";
 
 export default function Portfolio() {
 	const projects = [
@@ -24,8 +25,16 @@ export default function Portfolio() {
 
 	return (
 		<Container className={styles.main}>
-			<Title order={1}>Portfolio</Title>
-			<ProjectCarousel projects={projects} />
+			<Center>
+				<Stack>
+					<Center inline>
+						<ZoomieUnderline>
+							<Title order={1}>Portfolio</Title>
+						</ZoomieUnderline>
+					</Center>
+					<ProjectCarousel projects={projects} />
+				</Stack>
+			</Center>
 		</Container>
 	);
 }
