@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
 	return (
 		<footer className={styles.main}>
 			<Container size="xl" py="xl">
-				<Group justify="space-between" align="center">
+				<Group justify="center" align="center" w="100%">
 					<Text size="sm" c="dimmed">
 						© {new Date().getFullYear()} Kurt Slagle. All rights reserved.
 					</Text>

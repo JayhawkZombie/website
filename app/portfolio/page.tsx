@@ -26,7 +26,7 @@ export default function Portfolio() {
 	return (
 		<Container className={styles.main}>
 			<Center>
-				<Stack>
+				<Stack w="100%">
 					<Center inline>
 						<ZoomieUnderline rainbow>
 							<Title order={1}>Portfolio</Title>
