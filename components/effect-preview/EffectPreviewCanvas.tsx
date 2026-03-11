@@ -9,9 +9,10 @@ import {
 	createRingPlayerAPI,
 } from "@/lib/wasm/playersModule";
 import { MatrixArrangement } from "./LEDs";
+import styles from "./EffectPreviewCanvas.module.scss";
 
-const LAMP_SIZE = 10;
-const GAP = 10;
+const LAMP_SIZE = 4;
+const GAP = 2;
 const arrangement = new MatrixArrangement(ROWS, COLS, LAMP_SIZE, GAP, "#1a1a2e");
 
 export function EffectPreviewCanvas() {
@@ -116,11 +117,7 @@ export function EffectPreviewCanvas() {
 	}
 
 	return (
-		<Paper p="md" withBorder>
-			<Title order={4}>Effect preview (WASM)</Title>
-			<Text size="sm" c="dimmed" mb="xs">
-				Pulse player — same C++ as device
-			</Text>
+		<Paper p="md" withBorder className={styles.main}>
 			<canvas
 				ref={canvasRef}
 				width={arrangement.width}
