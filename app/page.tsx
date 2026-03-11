@@ -45,6 +45,9 @@ export default function Home() {
 					</Stack>
 				</Center>
 				<FeaturesCards features={features} />
+				<Center w="100%" p="sm">
+					<EffectPreviewCanvas />
+				</Center>
 			</Container>
 		</Container>
 	);

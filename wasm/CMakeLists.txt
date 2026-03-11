@@ -46,6 +46,7 @@ set(PLAYERS_EXPORTED_FUNCTIONS
     _wasm_ring_set_center
     _wasm_ring_set_props
     _wasm_ring_set_colors
+    _wasm_ring_setup
     _wasm_ring_start
     _wasm_ring_update
     _wasm_pulse_init
