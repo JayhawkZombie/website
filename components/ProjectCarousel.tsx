@@ -5,11 +5,14 @@ import { Button, Card, Paper, Text, Title, useMantineTheme } from "@mantine/core
 import { useMediaQuery } from "@mantine/hooks";
 import styles from "./ProjectCarousel.module.scss";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type CardProps = {
 	imageUrl: string;
 	title: string;
 	description: string;
+	link: string;
 };
 
 type ProjectCarouselProps = {
@@ -17,6 +20,7 @@ type ProjectCarouselProps = {
 };
 
 function ProjectCard(props: CardProps) {
+	const link = `/portfolio/${props.link}`;
 	return (
 		<Paper
 			shadow="md"
@@ -33,8 +37,8 @@ function ProjectCard(props: CardProps) {
 					{props.title}
 				</Title>
 			</div>
-			<Button variant="white" color="dark">
-				Read article
+			<Button variant="white" color="dark" component={Link} href={link}>
+				View Project
 			</Button>
 		</Paper>
 	);
@@ -47,7 +51,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
 	));
 	return (
 		<Carousel
-			slideSize={{ base: "100%", sm: "25%" }}
+			slideSize={{ base: "100%", sm: "50%" }}
 			slideGap={4}
 			emblaOptions={{ align: "start", slidesToScroll: 1 }}
 			nextControlProps={{ "aria-label": "Next slide" }}
