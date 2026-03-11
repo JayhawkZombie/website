@@ -23,10 +23,9 @@ let modulePromise: Promise<PlayersModule> | null = null;
 export function loadPlayersModule(): Promise<PlayersModule> {
 	if (modulePromise) return modulePromise;
 
-	// @ts-ignore
-	const base = ""; // import.meta.env.BASE_URL;
-	const wasmUrl = `${base}players.wasm`;
-	const scriptUrl = `${base}players.js`;
+	// Use relative URLs so players.wasm and players.js load from the app origin (e.g. public/ in Vite).
+	const wasmUrl = "players.wasm";
+	const scriptUrl = "players.js";
 
 	modulePromise = new Promise<PlayersModule>((resolve, reject) => {
 		const g = globalThis as unknown as { Module?: Record<string, unknown> };
@@ -69,6 +68,19 @@ export type CanvasEffect = {
 	restart?: () => void;
 };
 
+/** Mirrors C++ RPdata: full ring config for setup() (like RingPlayerEffect). */
+export type RPData = {
+	center: { row: number; col: number };
+	ringSpeed: number;
+	ringWidth: number;
+	fadeRadius: number;
+	fadeWidth: number;
+	amplitude: number;
+	onePulse?: boolean;
+	hiColor: { r: number; g: number; b: number };
+	loColor: { r: number; g: number; b: number };
+};
+
 /** Ring player API using the loaded module. */
 export type RingPlayerAPI = CanvasEffect & {
 	bufferPtr: number;
@@ -76,6 +88,8 @@ export type RingPlayerAPI = CanvasEffect & {
 	setCenter: (rowC: number, colC: number) => void;
 	setProps: (speed: number, ringWidth: number, fadeRadius: number, fadeWidth: number) => void;
 	setColors: (hiR: number, hiG: number, hiB: number, loR: number, loG: number, loB: number) => void;
+	/** Apply full config via RingPlayer.setup(RPdata). Includes amplitude and onePulse. */
+	setup: (rpd: RPData) => void;
 	start: () => void;
 };
 
@@ -125,6 +139,44 @@ export async function createRingPlayerAPI(module?: PlayersModule | null): Promis
 				"void",
 				["number", "number", "number", "number", "number", "number"],
 				[hiR, hiG, hiB, loR, loG, loB]
+			);
+		},
+		setup: (rpd: RPData) => {
+			mod.ccall(
+				"wasm_ring_setup",
+				"void",
+				[
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+					"number",
+				],
+				[
+					rpd.center.row,
+					rpd.center.col,
+					rpd.ringSpeed,
+					rpd.ringWidth,
+					rpd.fadeRadius,
+					rpd.fadeWidth,
+					rpd.amplitude,
+					rpd.onePulse !== false ? 1 : 0,
+					rpd.hiColor.r,
+					rpd.hiColor.g,
+					rpd.hiColor.b,
+					rpd.loColor.r,
+					rpd.loColor.g,
+					rpd.loColor.b,
+				]
 			);
 		},
 		start: () => mod.ccall("wasm_ring_start", "void", [], []),

@@ -1,11 +1,12 @@
+"use client";
 import { useRef, useEffect, useState } from "react";
 import { Paper, Title, Text } from "@mantine/core";
 import {
-	createPulsePlayerAPI,
 	ROWS,
 	COLS,
 	SIMULATION_DT,
 	type CanvasEffect,
+	createRingPlayerAPI,
 } from "@/lib/wasm/playersModule";
 import { MatrixArrangement } from "./LEDs";
 
@@ -27,14 +28,26 @@ export function EffectPreviewCanvas() {
 
 		(async () => {
 			try {
-				const api = await createPulsePlayerAPI();
+				const api = await createRingPlayerAPI(); // createPulsePlayerAPI();
 				if (cancelled) {
 					api.dispose();
 					return;
 				}
 				apiRef.current = api;
 
-				api.init(16 * 16, 0, 200, 255, 80, 40, true);
+				// api.init(16 * 16, 0, 200, 255, 80, 40, true);
+				api.init(32, 32);
+				api.setup({
+					center: { row: 16, col: 16 },
+					ringSpeed: 20,
+					ringWidth: 7,
+					fadeRadius: 8,
+					fadeWidth: 10,
+					amplitude: 1.3,
+					onePulse: true,
+					hiColor: { r: 255, g: 0, b: 255 },
+					loColor: { r: 0, g: 255, b: 255 },
+				});
 				api.start();
 
 				setReady(true);
