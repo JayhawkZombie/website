@@ -3,9 +3,17 @@ import { Container, Text, Title, Center, Stack } from "@mantine/core";
 import styles from "./page.module.scss";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import { ZoomieUnderline } from "@/components/ui";
+import { EffectPreviewCanvas } from "@/components/effect-preview/EffectPreviewCanvas";
 
 export default function Portfolio() {
 	const projects = [
+		{
+			// imageUrl: "/portfolio/led_panels/twinkling_panels.jpg",
+			title: "SRDriver",
+			description: "A full-stack C++ firmware for ESP32 and LEDs",
+			previewContent: EffectPreviewCanvas,
+			link: "srdriver",
+		},
 		{
 			imageUrl: "/portfolio/led_panels/twinkling_panels.jpg",
 			title: "LED Display",
