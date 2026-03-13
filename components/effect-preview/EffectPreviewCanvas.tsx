@@ -40,11 +40,11 @@ export function EffectPreviewCanvas() {
 				api.init(32, 32);
 				api.setup({
 					center: { row: 16, col: 16 },
-					ringSpeed: 20,
-					ringWidth: 7,
-					fadeRadius: 8,
+					ringSpeed: 3.0,
+					ringWidth: 5,
+					fadeRadius: 32,
 					fadeWidth: 10,
-					amplitude: 1.3,
+					amplitude: 1,
 					onePulse: true,
 					hiColor: { r: 255, g: 0, b: 255 },
 					loColor: { r: 0, g: 255, b: 255 },

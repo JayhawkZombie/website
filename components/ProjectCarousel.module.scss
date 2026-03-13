@@ -8,18 +8,47 @@
 	background-position: center;
 }
 
+.titleContainer {
+	z-index: 1;
+	// background-color: rgba(0, 0, 0, 0.5);
+}
+
 .title {
 	font-family: Outfit, sans-serif;
 	font-weight: 600;
-	color: var(--mantine-color-white);
+	color: var(--color-text-primary);
 	line-height: 1.2;
 	font-size: 32px;
 	margin-top: var(--mantine-spacing-xs);
+	z-index: 1;
 }
 
 .category {
-	color: var(--mantine-color-white);
+	color: var(--color-text-primary);
 	opacity: 0.7;
 	font-weight: 700;
 	text-transform: uppercase;
+	z-index: 1;
+}
+
+.textOverlay {
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	padding: var(--mantine-spacing-md);
+	transition: opacity 0.2s ease-in-out;
+	z-index: 0;
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.control {
+	background-color: var(--color-background-secondary);
+}
+
+.description {
+	color: var(--color-text-bright);
+	font-weight: 600;
+	font-size: 1.5rem;
 }

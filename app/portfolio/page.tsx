@@ -13,24 +13,28 @@ export default function Portfolio() {
 			description: "A full-stack C++ firmware for ESP32 and LEDs",
 			previewContent: EffectPreviewCanvas,
 			link: "srdriver",
+			category: "Embedded Systems",
 		},
 		{
 			imageUrl: "/portfolio/led_panels/twinkling_panels.jpg",
 			title: "LED Display",
 			description: "A custom LED display made with my partner.",
 			link: "led_display",
+			category: "Embedded Systems",
 		},
 		{
 			imageUrl: "/portfolio/led_panels/led_flowers.jpg",
 			title: "LED Flowers",
 			description: "A flower arrangement with LEDs underneath to make it glow.",
 			link: "led_flowers",
+			category: "Embedded Systems",
 		},
 		{
 			imageUrl: "/portfolio/led_panels/fiber_optic_canvas.jpg",
 			title: "Fiber Optic Canvas",
 			description: "A fiber optic canvas, with 1100+ dots and controllable regions.",
 			link: "fiber_optic_canvas",
+			category: "Embedded Systems",
 		},
 	];
 
